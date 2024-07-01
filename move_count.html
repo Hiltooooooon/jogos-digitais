@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentação de Foto com Rotação</title>
+    <style>
+        /* Estilos para o corpo da página */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3f5f82c-a3ce-4893-ba48-ea028bca86c4/d8s0ree-199e5342-c43a-4aed-8497-25e497d18aec.png/v1/fill/w_1264,h_632,q_70,strp/pixel_forest_background_by_mmantas_d8s0ree-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjAwMCIsInBhdGgiOiJcL2ZcL2EzZjVmODJjLWEzY2UtNDg5My1iYTQ4LWVhMDI4YmNhODZjNFwvZDhzMHJlZS0xOTllNTM0Mi1jNDNhLTRhZWQtODQ5Ny0yNWU0OTdkMThhZWMucG5nIiwid2lkdGgiOiI8PTQwMDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.RK0Vy8GSDvrOGJh-hVw7khjbbQfYlur0ky67_4ASlgs");
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos para o contêiner da foto */
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilos para a foto */
+        #foto {
+            max-width: 50%;
+            max-height: 50%;
+            transition: transform 0.3s ease; /* Adiciona uma transição suave ao mover a foto */
+        }
+
+        /* Estilos para o texto informativo */
+        #texto-informativo {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Foto a ser movida -->
+        <img id="foto" src="https://lh3.googleusercontent.com/drive-storage/AJQWtBMqT7krfteJDiPv0E3ywkio5iBhqBfsAuSM8lZpF-YFPqTYG0lXmDJ_Kxtkms9czzQBHdV60FClxcRLehToz4tvLVHZzvX4vGdrGjbYC0sqM9M=w1920-h975" alt="Foto">
+    </div>
+
+    <div id="texto-informativo">
+        Pressione 'A' para mover para a esquerda<br>
+        Pressione 'D' para mover para a direita<br>
+        Pressione 'W' para mover para cima<br>
+        Pressione 'S' para mover para baixo
+    </div>
+
+    <script>
+        // Seleciona a foto e define as variáveis de posição e rotação
+        var foto = document.getElementById("foto");
+        var posicaoHorizontal = 0;
+        var posicaoVertical = 0;
+        var angulo = 0;
+
+        // Event listener para detectar quando uma tecla é pressionada
+        document.addEventListener("keydown", function(event) {
+            // Se a tecla pressionada for 'A', move e gira para a esquerda
+            if (event.key === "a" || event.key === "A") {
+                posicaoHorizontal -= 10; // Ajuste a quantidade de pixels que a foto vai se mover para a esquerda
+                angulo -= 10; // Ajuste o ângulo de rotação
+            }
+            // Se a tecla pressionada for 'D', move e gira para a direita
+            else if (event.key === "d" || event.key === "D") {
+                posicaoHorizontal += 10; // Ajuste a quantidade de pixels que a foto vai se mover para a direita
+                angulo += 10; // Ajuste o ângulo de rotação
+            }
+            // Se a tecla pressionada for 'W', move e gira para cima
+            if (event.key === "w" || event.key === "W") {
+                posicaoVertical -= 10; // Ajuste a quantidade de pixels que a foto vai se mover para cima
+                angulo -= 10; // Ajuste o ângulo de rotação
+            }
+            // Se a tecla pressionada for 'S', move e gira para a direita
+            else if (event.key === "s" || event.key === "S") {
+                posicaoVertical += 10; // Ajuste a quantidade de pixels que a foto vai se mover para baixo
+                angulo += 10; // Ajuste o ângulo de rotação
+            }
+
+            // Aplica transformações de movimento e rotação à imagem''
+            foto.style.transform = `translate(${posicaoHorizontal}px, ${posicaoVertical}px)`;
+
+            if(posicaoHorizontal > 400){
+                alert("tá na hora de virar herói!")
+            }
+        });
+    </script>
+</body>
+</html>
